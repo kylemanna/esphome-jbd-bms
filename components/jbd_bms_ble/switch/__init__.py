@@ -21,7 +21,7 @@ ICON_BUZZER = "mdi:volume-high"
 SWITCHES = {
     CONF_DISCHARGING: [0xE1, 1],
     CONF_CHARGING: [0xE1, 0],
-    CONF_BALANCER: [0x2D, 3],
+    CONF_BALANCER: [0x2D, 2],
 }
 
 JbdSwitch = jbd_bms_ble_ns.class_("JbdSwitch", switch.Switch, cg.Component)
@@ -40,12 +40,12 @@ CONFIG_SCHEMA = JBD_BMS_BLE_COMPONENT_SCHEMA.extend(
                 cv.Optional(CONF_ICON, default=ICON_CHARGING): cv.icon,
             }
         ).extend(cv.COMPONENT_SCHEMA),
-        # cv.Optional(CONF_BALANCER): switch.SWITCH_SCHEMA.extend(
-        #     {
-        #         cv.GenerateID(): cv.declare_id(JbdSwitch),
-        #         cv.Optional(CONF_ICON, default=ICON_BALANCER): cv.icon,
-        #     }
-        # ).extend(cv.COMPONENT_SCHEMA),
+        cv.Optional(CONF_BALANCER): switch.SWITCH_SCHEMA.extend(
+            {
+                cv.GenerateID(): cv.declare_id(JbdSwitch),
+                cv.Optional(CONF_ICON, default=ICON_BALANCER): cv.icon,
+            }
+        ).extend(cv.COMPONENT_SCHEMA),
     }
 )
 
